@@ -51,9 +51,9 @@ int circular_buffer_push_back(struct circular_buffer_t *cb, int value){
 
     *(cb->ptr + (cb->end)) = value;
     cb->end++;
-                            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    if (cb->end == cb->capacity)//  NIE ZMIENIAC BEGINA NIGDZIE W FUNKCJI
-        cb->end = 0;                   //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                            
+    if (cb->end == cb->capacity)
+        cb->end = 0;                   
 
     if (cb->end == cb->begin) {
         cb->full = 1;
