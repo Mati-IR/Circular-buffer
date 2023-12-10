@@ -1,13 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "circular_buffer.h"
-/*struct circular_buffer_t {
-    int *ptr;
-    int begin;
-    int end;
-    int capacity;
-    unsigned char full: 1;
-};*/
+
 int circular_buffer_create(struct circular_buffer_t *a, int N){
     if (a == NULL || N <= 0)
         return 1;
@@ -77,12 +71,6 @@ int circular_buffer_full(const struct circular_buffer_t *a){
 
     if (a->end == a->begin && a->full == 1)
         return 1;
-
-    //if (head + 1) is equal to tail -> the buffer is full
-    /*if (a->full == 0)
-        return 0;
-    if (a->begin + 1 == a->end || a->full == 1)
-        return 1;*/
     return 0;
 }
 
@@ -123,13 +111,10 @@ int circular_buffer_pop_back(struct circular_buffer_t *a, int *err_code){
     }
     if (err_code != NULL)
         *err_code = 0;
-    //*(a->ptr + a->end) = 0;
     a->end--;
     if (a->end < 0)
         a->end = a->capacity -1;
     a->full = 0;
-    //if (a->begin == a->end)
-        //return 0;
     return *(a->ptr + a->end);
 }
 
